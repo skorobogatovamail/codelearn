@@ -1,7 +1,7 @@
 import React from "react";
+import cn from "classnames";
 import { Logo } from "./Logo";
-import Link from "next/link";
-import { Button } from "./Button";
+import { Button } from "@/components/ui/button";
 
 interface HeaderProps {
   classname?: string;
@@ -9,19 +9,18 @@ interface HeaderProps {
 
 export const Header = ({ classname }: HeaderProps) => {
   return (
-    <div className={classname}>
+    <header
+      className={cn(
+        classname,
+        "flex justify-between items-center py-5 px-8 sm:px-20  border-b"
+      )}
+    >
       <Logo />
-      <Link
-        href={{
-          pathname: "/courses",
-        }}
-      >
-        Courses
-      </Link>
-      <div>
-        <Button text="Login"></Button>
-        <Button text="Sign up"></Button>
+
+      <div className="flex justify-between gap-2">
+        <Button variant="outline">Login</Button>
+        <Button>Sign up</Button>
       </div>
-    </div>
+    </header>
   );
 };
