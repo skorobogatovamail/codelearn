@@ -1,6 +1,6 @@
 import React from "react";
 import { Logo } from "./Logo";
-import cn from "classnames";
+import { cn } from "@/lib/utils";
 
 interface FooterProps {
   classname?: string;

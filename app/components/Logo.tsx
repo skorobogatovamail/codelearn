@@ -1,5 +1,5 @@
 import React from "react";
-import cn from "classnames";
+import { cn } from "@/lib/utils";
 import { GraduationCap } from "lucide-react";
 import Link from "next/link";
 

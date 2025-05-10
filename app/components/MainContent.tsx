@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import classNames from "classnames";
+import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import React from "react";
@@ -11,7 +11,7 @@ interface MainContentProps {
 export const MainContent = ({ classname }: MainContentProps) => {
   return (
     <main
-      className={classNames(
+      className={cn(
         classname,
         "px-8 sm:px-20 bg-gradient-to-b  from-slate-50 to-white"
       )}
