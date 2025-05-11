@@ -47,6 +47,44 @@ model Lecture {
     duration  String?
     completed Boolean  @default(false)
     type      String? // Например: "video", "text", "interactive"
+    content   String? // HTML-контент лекции
     module    Module   @relation(fields: [moduleId], references: [id])
     moduleId  Int
+
+    // Добавляем связанные модели для дополнительного контента
+    codeExamples     CodeExample[]
+    quizQuestions    QuizQuestion[]
+    codingChallenges CodingChallenge[]
+
+    @@unique([title, moduleId])
+}
+
+model CodeExample {
+    id        Int     @id @default(autoincrement())
+    title     String
+    code      String
+    output    String?
+    lecture   Lecture @relation(fields: [lectureId], references: [id])
+    lectureId Int
+}
+
+model QuizQuestion {
+    id            Int     @id @default(autoincrement())
+    text          String
+    options       Json // Массив вариантов ответа {id: String, text: String}
+    correctAnswer String
+    explanation   String?
+    lecture       Lecture @relation(fields: [lectureId], references: [id])
+    lectureId     Int
+}
+
+model CodingChallenge {
+    id             Int     @id @default(autoincrement())
+    title          String
+    description    String
+    initialCode    String
+    solution       String?
+    expectedOutput String?
+    lecture        Lecture @relation(fields: [lectureId], references: [id])
+    lectureId      Int
 }
