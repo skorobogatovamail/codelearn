@@ -19,7 +19,7 @@ model Course {
     createdAt DateTime @default(now())
     updatedAt DateTime @default(now())
 
-    title       String
+    title       String   @unique
     description String
     modules     Module[]
     duration    String
