@@ -1,0 +1,52 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    url      = env("DATABASE_URL")
+    provider = "postgresql"
+}
+
+model User {
+    id        Int      @id @default(autoincrement())
+    createdAt DateTime @default(now())
+    email     String   @unique
+    name      String?
+}
+
+model Course {
+    id        Int      @id @default(autoincrement())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now())
+
+    title       String
+    description String
+    modules     Module[]
+    duration    String
+    level       String?
+    image       String?
+}
+
+model Module {
+    id          Int       @id @default(autoincrement())
+    createdAt   DateTime  @default(now())
+    updatedAt   DateTime  @default(now())
+    title       String
+    description String
+    progress    Int       @default(0)
+    course      Course    @relation(fields: [courseId], references: [id])
+    courseId    Int
+    lectures    Lecture[]
+}
+
+model Lecture {
+    id        Int      @id @default(autoincrement())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now())
+    title     String
+    duration  String?
+    completed Boolean  @default(false)
+    type      String? // Например: "video", "text", "interactive"
+    module    Module   @relation(fields: [moduleId], references: [id])
+    moduleId  Int
+}
