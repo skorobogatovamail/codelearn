@@ -1,15 +1,16 @@
 import React from "react";
-import { Card, CourseCard } from "./CourseCard";
+import { CourseCard } from "./CourseCard";
 import { cn } from "@/lib/utils";
+import { Course, Module } from "@prisma/client";
 
 interface CoursesListProps {
   classname?: string;
-  courses: Card[];
+  courses: (Course & { modules: Module[] })[];
 }
 
 export const CoursesList = ({ classname, courses }: CoursesListProps) => {
   return (
-    <div className={cn(classname, "flex gap-4 ")}>
+    <div className={cn(classname, "flex gap-4 justify-space-between flex-wrap")}>
       {courses.map((el) => (
         <CourseCard key={el.id} card={el} />
       ))}
