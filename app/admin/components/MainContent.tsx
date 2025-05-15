@@ -1,4 +1,7 @@
+"use client"
+
 import React, { useState } from "react";
+import { useRouter } from "next/navigation"
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -14,7 +17,7 @@ interface Props {
 }
 
 export const MainContent = ({ classname }: Props) => {
-
+    const router = useRouter()
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [error, setError] = useState<string | null>(null)
     const [courseData, setCourseData] = useState({
