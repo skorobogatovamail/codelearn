@@ -1,7 +1,7 @@
 import type React from "react"
 import { Header } from "../../components/Header"
-import { Aside } from "../../components/Aside"
-import { MainContent } from "../../components/MainContent"
+import { Aside } from "./components/Aside"
+import { MainContent } from "./components/MainContent"
 
 export default function NewCoursePage() {
     return (
