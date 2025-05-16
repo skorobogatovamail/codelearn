@@ -21,6 +21,7 @@ export const MainContent = ({ classname }: Props) => {
     level: "",
     category: "",
     imageUrl: "/placeholder.svg?height=400&width=600",
+    content: []
   });
 
   const handleInputChange = (

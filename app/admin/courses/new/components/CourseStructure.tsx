@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
     Card,
@@ -9,11 +9,18 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 import { Button } from '@/components/ui/button';
+import { ContentBlock, ICourseContentBlock } from './ContentBlock';
+import { ICourseData } from './PageTabs';
 
 interface Props {
+    courseData: ICourseData,
+    isSubmitting: boolean,
+    onSaveDraft: (status: 'draft' | 'published') => void,
 }
 
-export const CourseStructure = ({ }: Props) => {
+export const CourseStructure = ({ courseData, onSaveDraft, isSubmitting }: Props) => {
+
+    const [blocks, setBlocks] = useState<ICourseContentBlock[]>([])
 
     return (
         <Card>
@@ -32,6 +39,9 @@ export const CourseStructure = ({ }: Props) => {
                         Please save the course details before adding modules and
                         lectures.
                     </p>
+                    {blocks.map(block => (
+                        <ContentBlock block={block} />
+                    ))}
                     <Button
                         onClick={() => onSaveDraft("draft")}
                         disabled={isSubmitting}

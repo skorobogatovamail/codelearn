@@ -20,17 +20,11 @@ import {
 import { ImageUploader } from './ImageUploader';
 import { Button } from '@/components/ui/button';
 import { Save } from 'lucide-react';
+import { ICourseData } from './PageTabs';
 
 
 interface Props {
-    courseData: {
-        title: string,
-        shortDescription: string,
-        description: string,
-        level: string,
-        category: string,
-        imageUrl: string,
-    },
+    courseData: ICourseData,
     onInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void,
     onSelectChange: (name: string, value: string) => void,
     isSubmitting: boolean,
